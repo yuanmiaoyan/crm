@@ -53,10 +53,7 @@ var sv = http.createServer(function (req, res) {
                         "code": 1
                     }));
                 }
-
-
             }
-
         })
     }
     //->获取所有的客户信息
