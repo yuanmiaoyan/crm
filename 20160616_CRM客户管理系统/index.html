@@ -5,8 +5,41 @@
     <title>login</title>
 </head>
 <body>
-<input type="text">
-<input type="password">
-<button>登录</button>
+<input type="text" class="username" id="username">
+<input type="password" class="password" id="password">
+<button id="submit">登录</button>
+
+
+<script type="text/javascript" charset="UTF-8" src="js/ajax.js"></script>
+<script type="text/javascript">
+    var userName=document.getElementById('username');
+    var password=document.getElementById('password');
+    var submit=document.getElementById('submit');
+
+    submit.onclick=function(){
+        userName=userName.value.replace(/^ +| +$/g, "");
+        password=password.value.replace(/^ +| +$/g, "");
+
+        ajax({
+            url:'/login',
+            type:'post',
+            cache:false,
+            async:true,
+            dataType:'json',
+            data:{
+                name:userName,
+                password:password
+            },
+            success:function(data){
+                console.log(data);
+                alert(data["message"]);
+                if (data["code"] == 0) {
+                    window.location.href = "CRM.html";
+                }
+            }
+        })
+
+    }
+</script>
 </body>
 </html>

@@ -16,7 +16,6 @@ function queryURLParameter() {
     return obj;
 }
 
-
 //->获取浏览器地址中问号后面传递的参数值:如果传了ID当前操作为修改,否则为增加
 var isAdd = true,
     urlObj = queryURLParameter();
@@ -28,7 +27,7 @@ if (typeof urlObj["id"] !== "undefined") {
         url: "/getInfo",
         data:{'id':urlObj["id"]},
         cache:false,
-        type: "get",
+        type: "post",
         async:true,
         dataType:'json',
         success: function (data) {
@@ -62,10 +61,9 @@ submit.onclick = function () {
             async:true,
             dataType:'json',
             success: function (data) {
-
                 alert(data["message"]);
                 if (data["code"] == 0) {
-                    window.location.href = "index.html";
+                    window.location.href = "CRM.html";
                 }
             }
         });
@@ -84,7 +82,7 @@ submit.onclick = function () {
         success: function (data) {
             alert(data["message"]);
             if (data["code"] == 0) {
-                window.location.href = "index.html";//->window.location.href:JS实现页面跳转的一种方式
+                window.location.href = "CRM.html";//->window.location.href:JS实现页面跳转的一种方式
             }
         }
     });

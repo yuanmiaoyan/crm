@@ -36,21 +36,24 @@ var sv = http.createServer(function (req, res) {
         var temp = "";
         req.addListener("data", function (postCon) {
             temp += postCon;
-        })
+
+        });
         req.addListener("end", function () {
             var con = fs.readFileSync(pathAdmin, "utf8");
             con = JSON.parse(con);
-            temp = JSON.parse(temp);
 
+            temp = JSON.parse(temp);
             for (var i = 0; i < con.length; i++) {
                 var curCon = con[i];
                 if (temp.name == curCon.name && temp.password == curCon.password) {
                     res.end(JSON.stringify({
-                        "code": 0
+                        "code": 0,
+                        'message':'登陆成功!'
                     }));
                 } else {
                     res.end(JSON.stringify({
-                        "code": 1
+                        "code": 1,
+                        'message':'登陆成功!'
                     }));
                 }
             }
@@ -68,17 +71,21 @@ var sv = http.createServer(function (req, res) {
         var addTemp = "";
         req.addListener("data", function (postCon) {
             addTemp += postCon;
+            console.log(addTemp)
         });
         req.addListener('end', function () {
             var con = fs.readFileSync(path, "utf8");
             con = JSON.parse(con);
             addTemp = JSON.parse(addTemp);
+            console.log(addTemp)
+            console.log(JSON.stringify(addTemp))
             if (con.length === 0) {
                 addTemp["id"] = 1;
             } else {
                 addTemp["id"] = parseFloat(con[con.length - 1]["id"]) + 1;
             }
             con.push(addTemp);
+
             fs.writeFileSync(path, JSON.stringify(con));
             res.writeHead(200, {'content-type': 'application/json;charset=utf-8;'});
             res.end(JSON.stringify({
@@ -157,6 +164,6 @@ var sv = http.createServer(function (req, res) {
         res.end(JSON.stringify(obj));
     }
 });
-sv.listen(80, function () {
+sv.listen(8888, function () {
     console.log("success")
 });
