@@ -53,7 +53,7 @@ var sv = http.createServer(function (req, res) {
                 } else {
                     res.end(JSON.stringify({
                         "code": 1,
-                        'message':'登陆成功!'
+                        'message':'登陆失败!'
                     }));
                 }
             }
@@ -71,14 +71,11 @@ var sv = http.createServer(function (req, res) {
         var addTemp = "";
         req.addListener("data", function (postCon) {
             addTemp += postCon;
-            console.log(addTemp)
         });
         req.addListener('end', function () {
             var con = fs.readFileSync(path, "utf8");
             con = JSON.parse(con);
             addTemp = JSON.parse(addTemp);
-            console.log(addTemp)
-            console.log(JSON.stringify(addTemp))
             if (con.length === 0) {
                 addTemp["id"] = 1;
             } else {
