@@ -31,7 +31,7 @@ var sv = http.createServer(function (req, res) {
     }
 
     //->数据接口请求的处理
-    var path = "./nodeModule/customInfo.json";//->我们存储数据文件的地址
+    var path = "./nodeModule/stuffInfo.json";//->我们存储数据文件的地址
 
     //->获取所有的客户信息
     if (pathname === "/getAllList") {

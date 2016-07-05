@@ -67,7 +67,7 @@ submit.onclick = function () {
     //->增加
     objStr = JSON.stringify(obj);
     ajax({
-        url: "/add",
+        url: "/addStuffInfo",
         type: "post",
         data: objStr,
         success: function (data) {

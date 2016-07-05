@@ -30,7 +30,35 @@ var sv = http.createServer(function (req, res) {
         return;
     }
 
-    var path = "./nodeModule/customInfo.json";
+    var path = "./nodeModule/stuffInfo.json";
+    var pathAdmin = "./nodeModule/admin.json";
+    if (pathname == "/login") {
+        var temp = "";
+        req.addListener("data", function (postCon) {
+            temp += postCon;
+        })
+        req.addListener("end", function () {
+            var con = fs.readFileSync(pathAdmin, "utf8");
+            con = JSON.parse(con);
+            temp = JSON.parse(temp);
+
+            for (var i = 0; i < con.length; i++) {
+                var curCon = con[i];
+                if (temp.name == curCon.name && temp.password == curCon.password) {
+                    res.end(JSON.stringify({
+                        "code": 0
+                    }));
+                } else {
+                    res.end(JSON.stringify({
+                        "code": 1
+                    }));
+                }
+
+
+            }
+
+        })
+    }
     //->获取所有的客户信息
     if (pathname === "/getAllList") {
         var allList = fs.readFileSync(path, "utf8");
@@ -39,7 +67,7 @@ var sv = http.createServer(function (req, res) {
     }
 
     //->新增用户
-    if (pathname === "/add") {
+    if (pathname === "/addStuffInfo") {
         var addTemp = "";
         req.addListener("data", function (postCon) {
             addTemp += postCon;
@@ -58,14 +86,14 @@ var sv = http.createServer(function (req, res) {
             res.writeHead(200, {'content-type': 'application/json;charset=utf-8;'});
             res.end(JSON.stringify({
                 "code": 0,
-                "message": "创建成功!"
+                "message": "添加成功!"
             }));
         });
         return;
     }
 
     //->获取指定用户的详细信息
-    if (pathname === "/getInfo") {
+    if (pathname === "/getStuffInfo") {
         var con = fs.readFileSync(path, "utf8");
         con = JSON.parse(con);
         var curObj = null;
@@ -84,7 +112,7 @@ var sv = http.createServer(function (req, res) {
     }
 
     //->修改客户信息
-    if (pathname === "/update") {
+    if (pathname === "/updateStuffInfo") {
         var updateTemp = "";
         req.addListener("data", function (chunk) {
             updateTemp += chunk;
@@ -110,7 +138,7 @@ var sv = http.createServer(function (req, res) {
     }
 
     //->删除客户信息
-    if (pathname === "/remove") {
+    if (pathname === "/removeStuffInfo") {
         var obj = {
             "code": 1,
             "message": "删除失败!"
@@ -132,4 +160,6 @@ var sv = http.createServer(function (req, res) {
         res.end(JSON.stringify(obj));
     }
 });
-sv.listen(80);
+sv.listen(80, function () {
+    console.log("success")
+});

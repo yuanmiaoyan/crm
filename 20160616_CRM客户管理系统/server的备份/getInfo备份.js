@@ -30,7 +30,7 @@ var sv = http.createServer(function (req, res) {
         return;
     }
 
-    var path = "./nodeModule/customInfo.json";
+    var path = "./nodeModule/stuffInfo.json";
     //->获取所有的客户信息
     if (pathname === "/getAllList") {
         var allList = fs.readFileSync(path, "utf8");

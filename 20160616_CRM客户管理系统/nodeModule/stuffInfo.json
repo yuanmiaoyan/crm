@@ -1,19 +1,22 @@
 [
   {
-    "name": "王大哥",
+    "name": "xiaoming",
+    "password":"123456",
     "age": "30",
     "phone": "120",
     "address": "大马路",
     "id": "1"
   },{
-  "name": "王大哥",
+  "name": "xiaoming1",
+  "password":"123456",
   "age": "30",
   "phone": "120",
   "address": "大马路",
   "id": "2"
 },
   {
-    "name": "王大哥",
+    "name": "xiaoming2",
+    "password":"123456",
     "age": "30",
     "phone": "120",
     "address": "大马路",
