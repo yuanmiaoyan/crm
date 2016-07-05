@@ -29,7 +29,7 @@ var sv = http.createServer(function (req, res) {
         }
         return;
     }
-
+    //
     var path = "./nodeModule/stuffInfo.json";
     var pathAdmin = "./nodeModule/admin.json";
     if (pathname == "/login") {
@@ -60,10 +60,23 @@ var sv = http.createServer(function (req, res) {
         })
     }
     //->获取所有的客户信息
-    if (pathname === "/getAllList") {
-        var allList = fs.readFileSync(path, "utf8");
-        res.writeHead(200, {'content-type': 'application/json;charset=utf-8;'});
-        res.end(allList);
+    if (pathname === "/getList") {
+        var n = query['n'] || 1,
+            arr = [],
+            total = 0,
+            curData = JSON.parse(fs.readFileSync(path, 'utf8'));
+        for (var i = (n - 1) * 10; i < n * 10; i++) {
+            if (!curData[i]) {
+                break
+            }
+            arr.push(curData[i]);
+        }
+        var obj = {
+            total: Math.ceil(curData.length / 10),
+            data: arr
+        }
+        res.writeHead(200, {'content-type': 'application/json;charset=utf-8'});
+        res.end(JSON.stringify(obj));
     }
 
     //->新增用户
@@ -162,5 +175,5 @@ var sv = http.createServer(function (req, res) {
     }
 });
 sv.listen(8888, function () {
-    console.log("success")
+    console.log("successed in 8888 port")
 });

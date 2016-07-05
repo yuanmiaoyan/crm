@@ -8,7 +8,7 @@
     /*
      参数列表:
      {
-     url: '',
+     url: '',// 请求的路径
      data: '', // 发送的参数
      dataType: 'text',// 按照指定格式格式化服务器返回的数据
      headers: {},// 自定义请求首部
@@ -25,7 +25,7 @@
 
 
     /**
-     * ajax逻辑
+     * ajax执行逻辑
      * @param {Object} options 参数列表
      */
     var ajax = function (options) {
@@ -33,10 +33,12 @@
         if (!tools.getType(options, 'Object')) {
             throw new TypeError('参数类型错误');
         }
+
+        // ajax 第一步 获取ajax对象
         var xhr = tools.getXHR();
 
         var isGET = /^(get|head|delete)$/ig.test(options.type);
-        // 格式化参数
+        // 如果有参数,需要格式化参数
         if (options.data) {
             options.data = tools.encodeToURIString(options.data, isGET);
         }
@@ -55,8 +57,10 @@
             options.url = tools.padStringToURL(options.url, '_=' + random);
         }
 
+        // ajax 第二步 调用open方法
         xhr.open(options.type, options.url, options.async);
 
+        // 设置请求首部
         if (xhr.setRequestHeader && tools.getType(options.headers, 'Object')) {
             for (var n in options.headers) {
                 if (!options.headers.hasOwnProperty(n)) continue;
@@ -64,16 +68,21 @@
             }
         }
 
+        // 获取响应
         xhr.onreadystatechange = function () {
+            // 判断http事务是否完成
             if (xhr.readyState === 4) {
+                // 判断服务器状态码
                 if (/^2\d{2}$/.test(xhr.status)) {
+                    // 获取响应主体
                     var responseText = xhr.responseText;
                     // 判断dataType是否为json 如果为json则需要把响应主体格式化为json对象
                     if (responseText && /json/ig.test(options.dataType)) {
-                        // 因为非法json字符串执行JSONParse会报错,try,catch 处理
+                        // 因为非法json字符串执行JSONParse会报错
                         try {
                             responseText = tools.JSONParse(responseText);
                         } catch (ex) {
+                            // 报错直接执行error方法,并return
                             options.error(ex);
                             return;
                         }
@@ -85,10 +94,14 @@
             }
         };
 
+        //发起ajax请求
         xhr.send(options.data);
+
         return xhr;
     };
 
+
+    // 帮助函数
     var tools = {
         /**
          * 获取ajax对象
@@ -127,8 +140,9 @@
         getType: function (data, type) {
             return Object.prototype.toString.call(data) === '[object ' + type + ']';
         },
+        // {a:1,b:2,是:的} => a=1&b=2
         /**
-         * 把一个对象格式化为URIString格式，case：{a:1,b:2,是:的} => a=1&b=2
+         * 把一个对象格式化为URIString格式
          * @param {*} data 需要格式化的参数
          * @return {string} 格式化完毕得到的字符串
          */
@@ -184,6 +198,7 @@
             // return (new Function('return '+ jsonString))();
         }
     };
+
+
     this.ajax = ajax;
 })();
-

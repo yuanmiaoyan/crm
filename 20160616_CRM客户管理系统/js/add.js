@@ -60,6 +60,7 @@ submit.onclick = function () {
             async:true,
             dataType:'json',
             success: function (data) {
+
                 alert(data["message"]);
                 if (data["code"] == 0) {
                     window.location.href = "CRM.html";
@@ -79,9 +80,9 @@ submit.onclick = function () {
         async:true,
         dataType:'json',
         success: function (data) {
-            //alert(data["message"]);
+            alert(data["message"]);
             if (data["code"] == 0) {
-                //window.location.href = "CRM.html";//->window.location.href:JS实现页面跳转的一种方式
+                window.location.href = "CRM.html";
             }
         }
     });

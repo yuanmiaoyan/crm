@@ -3,9 +3,6 @@ var boxList = document.getElementById("boxList");
 ajax({
     url: "/getAllList",
     type: "get",
-    async:true,
-    cache:false,
-    dataType:'json',
     success: function (data) {//->data就是我们从服务器获取到的JSON格式的数据
         var str = '';
         for (var i = 0, len = data.length; i < len; i++) {
@@ -38,12 +35,8 @@ boxList.onclick = function (ev) {
             return;
         }
         ajax({
-            url: "/remove",
-            data:{'id':cusId},
-            cache:false,
+            url: "/remove?id=" + cusId + "&_=" + Math.random(),
             type: "get",
-            async:true,
-            dataType:'json',
             success: function (data) {
                 if (data["code"] == 0) {
                     boxList.removeChild(tar.parentNode.parentNode);

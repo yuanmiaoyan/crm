@@ -8,8 +8,10 @@
         "code":0/1, ->成功(0)或者失败(1)
         "message":"添加成功!/添加失败!"
       }
-->获取所有的信息
-  URL:/getAllList  GET
+
+
+->获取本页的信息
+  URL:/getList  GET
   参数:无
   返回:JSON格式的字符串
 
@@ -24,7 +26,7 @@
         "message":"添加成功!/添加失败!"
       }
 
-->获取指定的详细信息
+->获取指定id的详细信息
   URL:/getInfo  GET
   参数:?id=xxx  ->把要获取用户的编号传递给服务器端即可
   返回:JSON格式字符串
@@ -33,9 +35,10 @@
          "name":"xxx"
          ...
       }
+    ps:sever中规定了一页十个。
 
 ->修改指定的信息
-  URL:/updateInfo POST
+  URL:/update POST
   参数:
      {"id":xxx,"name":"xxx"....}
   返回:
@@ -45,14 +48,15 @@
      }
 
 ->删除信息
-  URL:/removeInfo GET
+  URL:/remove GET
   参数:?id=xxx
   返回:
      {
        "code":0/1,
        "message":"删除成功!/删除失败!"
      }
-
+                                                                By ：袁苗岩、刘德元
+                                                                     2016、7、6。
 
 
 
