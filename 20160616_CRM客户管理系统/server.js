@@ -67,7 +67,7 @@ var sv = http.createServer(function (req, res) {
     }
 
     //->新增用户
-    if (pathname === "/addStuffInfo") {
+    if (pathname === "/add") {
         var addTemp = "";
         req.addListener("data", function (postCon) {
             addTemp += postCon;
@@ -93,7 +93,7 @@ var sv = http.createServer(function (req, res) {
     }
 
     //->获取指定用户的详细信息
-    if (pathname === "/getStuffInfo") {
+    if (pathname === "/get") {
         var con = fs.readFileSync(path, "utf8");
         con = JSON.parse(con);
         var curObj = null;
@@ -112,7 +112,7 @@ var sv = http.createServer(function (req, res) {
     }
 
     //->修改客户信息
-    if (pathname === "/updateStuffInfo") {
+    if (pathname === "/update") {
         var updateTemp = "";
         req.addListener("data", function (chunk) {
             updateTemp += chunk;
@@ -138,7 +138,7 @@ var sv = http.createServer(function (req, res) {
     }
 
     //->删除客户信息
-    if (pathname === "/removeStuffInfo") {
+    if (pathname === "/remove") {
         var obj = {
             "code": 1,
             "message": "删除失败!"
