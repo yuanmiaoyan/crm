@@ -17,19 +17,17 @@
     var submit=document.getElementById('submit');
 
     submit.onclick=function(){
-        userName=userName.value.replace(/^ +| +$/g, "");
-        password=password.value.replace(/^ +| +$/g, "");
-
+        var obj = {};
+        obj.name=userName.value.replace(/^ +| +$/g, "");
+        obj.password=password.value.replace(/^ +| +$/g, "");
+        objStr=JSON.stringify(obj);
         ajax({
             url:'/login',
             type:'post',
             cache:false,
             async:true,
             dataType:'json',
-            data:{
-                "name":userName,
-                "password":password
-            },
+            data:objStr,
             success:function(data){
                 console.log(data);
                 alert(data["message"]);
