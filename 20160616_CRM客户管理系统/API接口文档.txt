@@ -8,12 +8,12 @@
         "code":0/1, ->成功(0)或者失败(1)
         "message":"添加成功!/添加失败!"
       }
-->获取所有的客户信息
+->获取所有的Stuff信息
   URL:/getAllList  GET
   参数:无
   返回:JSON格式的字符串
 
-->新增加客户信息(xxx都是用户在页面的文本框中自己输入的信息内容)
+->新增加Stuff信息(xxx都是用户在页面的文本框中自己输入的信息内容)
   URL:/addStuffInfo  POST
   参数:JSON格式字符串
       '{"name":"xxx","age":xxx,"phone":"xxx","address":"xxx"}'
@@ -24,7 +24,7 @@
         "message":"添加成功!/添加失败!"
       }
 
-->获取指定用户的详细信息
+->获取指定Stuff的详细信息
   URL:/getStuffInfo  GET
   参数:?id=xxx  ->把要获取用户的编号传递给服务器端即可
   返回:JSON格式字符串
@@ -34,7 +34,7 @@
          ...
       }
 
-->修改指定客户的信息
+->修改指定Stuff的信息
   URL:/updateStuffInfo POST
   参数:
      {"id":xxx,"name":"xxx"....}
@@ -44,7 +44,7 @@
        "message":"修改成功!/修改失败!"
      }
 
-->删除用户信息
+->删除Stuff信息
   URL:/removeStuffInfo GET
   参数:?id=xxx
   返回:
