@@ -94,8 +94,9 @@ var sv = http.createServer(function (req, res) {
     }
 
     //->获取指定用户的详细信息
-    if (pathname === "/get") {
+    if (pathname === "/getInfo") {
         var con = fs.readFileSync(path, "utf8");
+        console.log(urlObj)
         con = JSON.parse(con);
         var curObj = null;
         for (var i = 0; i < con.length; i++) {

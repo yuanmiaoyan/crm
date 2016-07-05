@@ -78,6 +78,7 @@
                             return;
                         }
                     }
+                    console.log(responseText)
                     options.success(responseText);
                 } else if (/^(4|5)\d{2}$/.test(xhr.status)) {
                     options.error(xhr.status);

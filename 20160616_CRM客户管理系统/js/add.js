@@ -21,13 +21,12 @@ var isAdd = true,
     urlObj = queryURLParameter();
 if (typeof urlObj["id"] !== "undefined") {
     isAdd = false;//->不是增加操作而是修改操作
-
     //->获取客户的详细信息,把每一个信息分别分放入对应的文本框中
     ajax({
         url: "/getInfo",
-        data:{'id':urlObj["id"]},
+        data:{id:urlObj["id"]},
         cache:false,
-        type: "post",
+        type: "get",
         async:true,
         dataType:'json',
         success: function (data) {
