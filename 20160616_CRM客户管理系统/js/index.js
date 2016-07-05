@@ -1,8 +1,11 @@
 //->第一步：把所有的客户信息都获取到，并且绑定在HTML页面中
 var boxList = document.getElementById("boxList");
 ajax({
-    url: "/getAllList?_=" + Math.random(),
+    url: "/getAllList",
     type: "get",
+    async:true,
+    cache:false,
+    dataType:'json',
     success: function (data) {//->data就是我们从服务器获取到的JSON格式的数据
         var str = '';
         for (var i = 0, len = data.length; i < len; i++) {
@@ -34,10 +37,13 @@ boxList.onclick = function (ev) {
         if (!flag) {//->如果flag为false,说明我们点击的是取消按钮,相反为true是删除按钮
             return;
         }
-
         ajax({
-            url: "/remove?id=" + cusId + "&_=" + Math.random(),
+            url: "/remove",
+            data:{'id':cusId},
+            cache:false,
             type: "get",
+            async:true,
+            dataType:'json',
             success: function (data) {
                 if (data["code"] == 0) {
                     boxList.removeChild(tar.parentNode.parentNode);

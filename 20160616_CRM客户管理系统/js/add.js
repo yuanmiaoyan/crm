@@ -25,8 +25,12 @@ if (typeof urlObj["id"] !== "undefined") {
 
     //->获取客户的详细信息,把每一个信息分别分放入对应的文本框中
     ajax({
-        url: "/getInfo?id=" + urlObj["id"] + "&_=" + Math.random(),
+        url: "/getInfo",
+        data:{'id':urlObj["id"]},
+        cache:false,
         type: "get",
+        async:true,
+        dataType:'json',
         success: function (data) {
             userName.value = data["name"];
             userAge.value = data["age"];
@@ -54,7 +58,11 @@ submit.onclick = function () {
             url: "/update",
             type: "post",
             data: objStr,
+            cache:false,
+            async:true,
+            dataType:'json',
             success: function (data) {
+
                 alert(data["message"]);
                 if (data["code"] == 0) {
                     window.location.href = "index.html";
@@ -70,6 +78,9 @@ submit.onclick = function () {
         url: "/add",
         type: "post",
         data: objStr,
+        cache:false,
+        async:true,
+        dataType:'json',
         success: function (data) {
             alert(data["message"]);
             if (data["code"] == 0) {
