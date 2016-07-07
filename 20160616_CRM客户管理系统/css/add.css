@@ -8,6 +8,7 @@ body {
     font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
     font-size: 14px;
     color: #000;
+    background: #f1f1f1;
 }
 
 ul, li {
@@ -22,9 +23,13 @@ a, a:active, a:hover, a:visited, a:target {
 input {
     display: inline-block;
     padding: 0 5px;
-    width: 390px;
-    height: 30px;
+    width: 280px;
+    height: 36px;
+    line-height: 36px;
     outline: none;
+    border-radius: 5px;
+    padding: 0 5px;
+    border: 1px solid #ccc;
 }
 
 span {
@@ -32,27 +37,35 @@ span {
     margin-right: 10px;
     height: 30px;
     line-height: 30px;
+    letter-spacing: .5em;
 }
 
 .box {
-    margin: 20px auto;
-    padding: 20px;
-    width: 500px;
+    margin: 40px auto;
+    padding: 40px;
+    width: 400px;
     border: 1px solid green;
     border-radius: 12px;
-    box-shadow:0 0 10px 5px #ccc
+    box-shadow:0 0 10px 5px #ccc;
+    background: #fff;
+    text-align: center;
 }
 
 .box div {
     margin-bottom: 20px;
 }
-
-#submit {
+.box h3{
+    height: 36px;
+    line-height: 36px;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+.submit {
     margin: 0 auto;
-    width: 300px;
-    height: 35px;
-    line-height: 35px;
-    background: green;
+    width: 360px;
+    height: 40px;
+    line-height: 40px;
+    background: darkorange;
     color: #fff;
     font-size: 20px;
     text-align: center;
@@ -60,4 +73,6 @@ span {
     -webkit-user-select: none;
     border-radius: 5px;
 }
-
+.submit:hover{
+    background: tomato;
+}

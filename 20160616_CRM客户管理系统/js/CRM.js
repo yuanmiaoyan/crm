@@ -7,14 +7,14 @@ var bottom=document.getElementById('bottom'),
 
 var n=1;total=0;
 dataBind();
-function dataBind(){
+function dataBind(val){
     ajax({
         url: "/getList",
         type: "get",
         async:true,
         cache:false,
         dataType:'json',
-        data:{n:n},
+        data:{n:n,val:val},
         success: function (data) {
             var str = '',
                 adata=data['data'];
@@ -121,6 +121,20 @@ search.onkeyup=function(e){
     }
 };
 
+var searchInput=document.getElementById("searchInput"),
+    searchBtn=document.getElementById("searchBtn"),
+    val=null;
+searchBtn.onclick=function(){
+    val=searchInput.value;
+    if(val){
+        dataBind(val);
+    }else{
+        alert('搜索条件不能为空')
+    }
+}
+if(!val){
+    dataBind();
+}
 
 
 

@@ -65,16 +65,28 @@ var sv = http.createServer(function (req, res) {
             arr = [],
             total = 0,
             curData = JSON.parse(fs.readFileSync(path, 'utf8'));
+        var val=query['val'];
+        console.log(val)
+        if(val){
+            for(var i=0;i<curData.length;i++){
+                var cur=curData[i].name;
+                if(cur.indexOf(val)){
+                    curData=curData[i];
+                    console.log(cur);
+                }
+            }
+        }
         for (var i = (n - 1) * 10; i < n * 10; i++) {
             if (!curData[i]) {
                 break
             }
+
             arr.push(curData[i]);
         }
         var obj = {
             total: Math.ceil(curData.length / 10),
-            data: arr
-        }
+            data: curData
+        };
         res.writeHead(200, {'content-type': 'application/json;charset=utf-8'});
         res.end(JSON.stringify(obj));
     }
