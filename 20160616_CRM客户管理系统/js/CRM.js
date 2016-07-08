@@ -129,11 +129,8 @@ searchBtn.onclick=function(){
     if(val){
         dataBind(val);
     }else{
-        alert('搜索条件不能为空')
+        dataBind();
     }
-}
-if(!val){
-    dataBind();
 }
 
 
