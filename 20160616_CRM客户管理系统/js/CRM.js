@@ -103,7 +103,8 @@ bottom.onclick=function(e){
         if(tar.innerHTML==n){return}
         n=tar.innerHTML;
     }
-    dataBind();
+    val=searchInput.value;
+    dataBind(val);
 };
 
 search.onkeyup=function(e){
@@ -124,12 +125,22 @@ search.onkeyup=function(e){
 var searchInput=document.getElementById("searchInput"),
     searchBtn=document.getElementById("searchBtn"),
     val=null;
-searchBtn.onclick=function(){
-    val=searchInput.value;
+function common(){
+    n=1
     if(val){
         dataBind(val);
     }else{
         dataBind();
+    }
+}
+searchBtn.onclick=function(){
+    val=searchInput.value;
+    common()
+};
+searchInput.onkeyup=function(e){
+    if(e.keyCode==13){
+        val=searchInput.value;
+        common()
     }
 }
 

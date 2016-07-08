@@ -76,18 +76,17 @@ var sv = http.createServer(function (req, res) {
             }
             curData=ary;
         }
-
+        console.log(curData)
         for (var i = (n - 1) * 10; i < n * 10; i++) {
             if (!curData[i]) {
                 break
             }
-
             arr.push(curData[i]);
         }
 
         var obj = {
             total: Math.ceil(curData.length / 10),
-            data: curData
+            data: arr
         };
         res.writeHead(200, {'content-type': 'application/json;charset=utf-8'});
         res.end(JSON.stringify(obj));
